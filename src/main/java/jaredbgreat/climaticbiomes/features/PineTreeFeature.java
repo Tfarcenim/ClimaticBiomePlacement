@@ -18,9 +18,8 @@ public class PineTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
     private static final BlockState LEAF = BlockRegistrar.pineNeedles.getDefaultState();
 
 
-    public PineTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn,
-                           boolean doBlockNotifyOnPlace) {
-        super(configFactoryIn, doBlockNotifyOnPlace);
+    public PineTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
+        super(configFactoryIn);
     }
 
 
@@ -39,7 +38,7 @@ public class PineTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
         if (y >= 1 && y + h1 + 1 <= world.getMaxHeight()) {
             for(int j = y + h2; j <= y + 2 + h1; ++j) {
 
-                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+                BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
                 for(int l = pos.getX() - 2; l <= pos.getX() + 2 && flag; ++l) {
                     for(int i1 = pos.getZ() - 2; i1 <= pos.getZ() + 2 && flag; ++i1) {

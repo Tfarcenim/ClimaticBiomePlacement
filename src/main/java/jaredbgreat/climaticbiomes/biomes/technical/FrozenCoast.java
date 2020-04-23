@@ -27,8 +27,8 @@ public class FrozenCoast extends Biome {
                 .waterFogColor(329011)
                 .parent((String)null));
         setRegistryName(Info.ID, name);
-        this.addStructure(Feature.MINESHAFT, new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL));
-        this.addStructure(Feature.SHIPWRECK, new ShipwreckConfig(true));
+        this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
+        this.addStructure(Feature.SHIPWRECK.withConfiguration( new ShipwreckConfig(true)));
         DefaultBiomeFeatures.addCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);

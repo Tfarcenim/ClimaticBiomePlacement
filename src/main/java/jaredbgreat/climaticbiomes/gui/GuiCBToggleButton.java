@@ -1,12 +1,12 @@
 package jaredbgreat.climaticbiomes.gui;
 
-import net.minecraftforge.fml.client.config.GuiButtonExt;
+import net.minecraft.client.gui.widget.button.Button;
 
-public class GuiCBToggleButton extends GuiButtonExt {
+public class GuiCBToggleButton extends Button {
 
     // TODO make this work
     public GuiCBToggleButton(int xPos, int yPos, int width, int height,
-                             String displayString, IPressable handler) {
+                             String displayString, Button.IPressable handler) {
         super(xPos, yPos, width, height, displayString, handler);
     }
 

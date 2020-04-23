@@ -11,6 +11,6 @@ import java.util.Random;
 public class PineTree extends Tree {
     @Nullable
     protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-        return new PineTreeFeature(NoFeatureConfig::deserialize, true);
+        return new PineTreeFeature(NoFeatureConfig::deserialize);
     }
 }

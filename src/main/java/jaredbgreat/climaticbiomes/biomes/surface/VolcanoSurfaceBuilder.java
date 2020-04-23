@@ -47,7 +47,7 @@ public class VolcanoSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> 
             SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock,
                     defaultFluid, seaLevel, seed, PURE_BASALT);
         }
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable blockpos$mutableblockpos = new BlockPos.Mutable();
 
         int k1 = x & 15;
         int l1 = z & 15;

@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.CreateWorldScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.fml.client.config.GuiSlider;
 import jaredbgreat.climaticbiomes.configuration.ClimaticWorldSettings;
 
 public class GuiConfigureWorld extends Screen {

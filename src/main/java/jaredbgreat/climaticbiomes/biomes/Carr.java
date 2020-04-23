@@ -33,8 +33,8 @@ public class Carr extends Biome {
                 .waterFogColor(2302743)
                 .parent((String)null));
         setRegistryName(Info.ID, name);
-        this.addStructure(Feature.SWAMP_HUT, IFeatureConfig.NO_FEATURE_CONFIG);
-        this.addStructure(Feature.MINESHAFT, new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL));
+        this.addStructure(Feature.SWAMP_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+                this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
         DefaultBiomeFeatures.addCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);
@@ -84,14 +84,12 @@ public class Carr extends Biome {
     }
 
 
-    @OnlyIn(Dist.CLIENT)
     public int getGrassColor(BlockPos pos) {
         double d0 = INFO_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
         return d0 < -0.1D ? 0x4C763C : 0x6A7039;
     }
 
 
-    @OnlyIn(Dist.CLIENT)
     public int getFoliageColor(BlockPos pos) {
         return 0x4C863C;
     }

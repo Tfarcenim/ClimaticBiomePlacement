@@ -25,10 +25,9 @@ public class IceCap extends Biome {
                 .waterFogColor(329011)
                 .parent((String)null));
         setRegistryName(Info.ID, name);
-        this.addStructure(Feature.OCEAN_RUIN,
-                new OceanRuinConfig(OceanRuinStructure.Type.COLD, 0.3F, 0.9F));
-        this.addStructure(Feature.OCEAN_RUIN,
-                new OceanRuinConfig(OceanRuinStructure.Type.COLD, 0.3F, 0.9F));
+        this.addStructure(Feature.OCEAN_RUIN.withConfiguration(
+                new OceanRuinConfig(OceanRuinStructure.Type.COLD, 0.3F, 0.9F)));
+        this.addStructure(Feature.OCEAN_RUIN.withConfiguration(new OceanRuinConfig(OceanRuinStructure.Type.COLD, 0.3F, 0.9F)));
         DefaultBiomeFeatures.addOceanCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addIcebergs(this);
