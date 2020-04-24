@@ -25,10 +25,10 @@ public class WarmBeach extends Biome {
                 .downfall(0.4F)
                 .waterColor(4566514)
                 .waterFogColor(267827)
-                .parent((String)null));
+                .parent(null));
         setRegistryName(Info.ID, name);
         this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        this.addStructure(Feature.BURIED_TREASURE, new BuriedTreasureConfig(0.01F));
+        this.addStructure(Feature.BURIED_TREASURE.withConfiguration(new BuriedTreasureConfig(0.01F)));
         this.addStructure(Feature.SHIPWRECK.withConfiguration( new ShipwreckConfig(true)));
         DefaultBiomeFeatures.addCarvers(this);
         DefaultBiomeFeatures.addStructures(this);

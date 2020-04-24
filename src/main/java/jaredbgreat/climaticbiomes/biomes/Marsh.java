@@ -42,15 +42,15 @@ public class Marsh extends Biome {
         DefaultBiomeFeatures.addStoneVariants(this);
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addSwampClayDisks(this);
-        DefaultBiomeFeatures.func_222283_Y(this);
+        DefaultBiomeFeatures.addPlainsTallGrass(this);
         ClimaticBiomesFeatures.addMarshPlants(this);
         DefaultBiomeFeatures.addMushrooms(this);
         DefaultBiomeFeatures.addSprings(this);
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-                createDecoratedFeature(Feature.SEAGRASS,
-                        new SeaGrassConfig(96, 0.6D),
-                        Placement.TOP_SOLID_HEIGHTMAP,
-                        IPlacementConfig.NO_PLACEMENT_CONFIG));
+                Feature.SEAGRASS.withConfiguration(
+                        new SeaGrassConfig(96, 0.6D)).withPlacement(
+                        Placement.TOP_SOLID_HEIGHTMAP.configure(
+                        IPlacementConfig.NO_PLACEMENT_CONFIG)));
         DefaultBiomeFeatures.addFossils(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
         this.addSpawn(EntityClassification.CREATURE,
@@ -86,7 +86,7 @@ public class Marsh extends Biome {
 
     @OnlyIn(Dist.CLIENT)
     public int getGrassColor(BlockPos pos) {
-        double d0 = INFO_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
+        double d0 = INFO_NOISE.noiseAt((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D,false);
         return d0 < -0.1D ? 0x25BB3C : 0x38983C;
     }
 

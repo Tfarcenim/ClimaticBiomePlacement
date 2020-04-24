@@ -30,13 +30,18 @@ public class ClimaticBiomeProvider extends BiomeProvider {
 
 
     public ClimaticBiomeProvider(World world) {
-        super();
+        super(getBiomes());
         finder = new MapRegistry(world.getSeed(), world);
-        if(biomes.isEmpty()) {
+
+    }
+
+    public static Set<Biome> getBiomes() {
+        if (biomes.isEmpty()) {
             for (Biome biome : Registry.BIOME) {
                 biomes.add(biome);
             }
         }
+        return biomes;
     }
 
 
@@ -46,13 +51,13 @@ public class ClimaticBiomeProvider extends BiomeProvider {
     /*-------------------------------------------------------------------------------------------------*/
 
 
-    @Override
+    //@Override
     public Biome getBiome(int x, int z) {
         return finder.getBiomeAt(x, z);
     }
 
 
-    @Override
+    //@Override
     public Biome[] getBiomes(int x, int z, int width, int length, boolean cacheFlag) {
         Biome[] biomes = new Biome[width * length];
         finder.getUnalignedBiomeGrid(x, z, width, length, biomes);
@@ -66,9 +71,9 @@ public class ClimaticBiomeProvider extends BiomeProvider {
     }
 
 
-    @Override
+    //@Override
     public Set<Biome> getBiomesInSquare(int centerX, int centerZ, int side) {
-        Set<Biome> out = new HashSet<Biome>();
+        Set<Biome> out = new HashSet<>();
         int r = side / 2;
         Biome[] biomes = getBiomes(centerX - r, centerZ - r, side, side, false);
         for(int i = 0; i < biomes.length; i++) {
@@ -79,7 +84,7 @@ public class ClimaticBiomeProvider extends BiomeProvider {
 
 
 
-    @Override
+    //@Override
     @Nullable
     public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random) {
         int i = x - range >> 2;
@@ -125,7 +130,7 @@ public class ClimaticBiomeProvider extends BiomeProvider {
     @Override
     public Set<BlockState> getSurfaceBlocks() {
         if (this.topBlocksCache.isEmpty()) {
-            for(Biome biome : this.biomes) {
+            for(Biome biome : biomes) {
                 this.topBlocksCache.add(biome.getSurfaceBuilderConfig().getTop());
             }
         }
@@ -145,4 +150,8 @@ public class ClimaticBiomeProvider extends BiomeProvider {
     }
 
 
+    @Override
+    public Biome getNoiseBiome(int x, int y, int z) {
+        return null;
+    }
 }

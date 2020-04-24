@@ -28,7 +28,7 @@ public class Bog extends Biome {
                 .downfall(0.9F)
                 .waterColor(0x2e3d0c)
                 .waterFogColor(2302743)
-                .parent((String)null));
+                .parent(null));
         setRegistryName(Info.ID, name);
         this.addStructure(Feature.SWAMP_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
@@ -79,7 +79,7 @@ public class Bog extends Biome {
 
     @OnlyIn(Dist.CLIENT)
     public int getGrassColor(BlockPos pos) {
-        double d0 = INFO_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
+        double d0 = INFO_NOISE.noiseAt((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D,false);
         return d0 < -0.1D ? 0x4C763C : 0x6A7039;
     }
 

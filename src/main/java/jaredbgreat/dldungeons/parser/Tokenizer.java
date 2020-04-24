@@ -90,7 +90,7 @@ public class Tokenizer {
 			onTokens = false;
 			size = 0;
 		}
-		tokens = (String[])Arrays.copyOf(tokens, token);
+		tokens = Arrays.copyOf(tokens, token);
 		token = 0;
 	}
 	
@@ -101,7 +101,7 @@ public class Tokenizer {
 	private void addToken() {
 		if(token >= tokens.length) {
 			int newCapacity = Math.min(tokens.length * 2, tokens.length + 16);
-			tokens = (String[])Arrays.copyOf(tokens, newCapacity);
+			tokens = Arrays.copyOf(tokens, newCapacity);
 		}
 		tokens[token] = new String(scratchpad, 0, size);
 		token++;

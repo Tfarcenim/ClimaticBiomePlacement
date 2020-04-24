@@ -20,7 +20,7 @@ public class TestWorldType extends WorldType {
     @Override
     public ChunkGenerator<?> createChunkGenerator(World world) {
         OverworldGenSettings settings = new OverworldGenSettings();
-        SingleBiomeProviderSettings single = new SingleBiomeProviderSettings();
+        SingleBiomeProviderSettings single = new SingleBiomeProviderSettings(world.getWorldInfo());
         // TODO: Change next line to biome being tested
         single.setBiome(BiomeRegistrar.bambooForest);
         return new OverworldChunkGenerator(world, new SingleBiomeProvider(single), settings);

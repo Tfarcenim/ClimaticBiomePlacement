@@ -7,25 +7,27 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class PineTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
+public class PineTreeFeature extends AbstractTreeFeature<TreeFeatureConfig> {
     private static final BlockState TRUNK = BlockRegistrar.pineLog.getDefaultState();
     private static final BlockState LEAF = BlockRegistrar.pineNeedles.getDefaultState();
 
 
-    public PineTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
+    public PineTreeFeature(Function<Dynamic<?>, ? extends TreeFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 
 
     @Override
-    public boolean place(Set<BlockPos> changed, IWorldGenerationReader world,
-                          Random rand, BlockPos pos, MutableBoundingBox mbb) {
+    protected boolean func_225557_a_(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> p_225557_4_, Set<BlockPos> p_225557_5_, MutableBoundingBox mbb, TreeFeatureConfig p_225557_7_) {
+
 
         int h1 = 4 + rand.nextInt(3) + rand.nextInt(2); // trunk height
         int h2 = Math.min(h1 -1 , 2 + rand.nextInt(1 + (h1 / 2))); // first leaf height
@@ -51,7 +53,7 @@ public class PineTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 
             if (!flag) {
                 return false;
-            } else if ((isSoil(world, pos.down(), getSapling())) && pos.getY() < world.getMaxHeight() - h1 - 1) {
+            } else if ((isSoil(world, pos.down(),BlockRegistrar.pineSapling)) && pos.getY() < world.getMaxHeight() - h1 - 1) {
                 this.setDirtAt(world, pos.down(), pos);
 
                 int w = 1;
@@ -63,7 +65,7 @@ public class PineTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                         for(int k2 = z - w; k2 <= (z + w); k2++) {
                             BlockPos place = new BlockPos(i2, j4, k2);
                             if(isAirOrLeaves(world, place)) {
-                                setLogState(changed, world, place, LEAF, mbb);
+                                func_227217_a_( world, place, LEAF, mbb);//setlogstate
                             }
                         }
                 }
@@ -74,13 +76,13 @@ public class PineTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
                         for(int k2 = z - w; k2 <= (z + w); k2++) {
                             BlockPos place = new BlockPos(i2, j4, k2);
                             if(isAirOrLeaves(world, place)) {
-                                setLogState(changed, world, place, LEAF, mbb);
+                                func_227217_a_(world, place, LEAF, mbb);//setlogstate
                             }
                         }
                 }
 
                 for(int i2 = 0; i2 < h1; ++i2) {
-                    setLogState(changed, world, pos.up(i2), TRUNK, mbb);
+                    func_227217_a_(world, pos.up(i2), TRUNK, mbb);//setlogstate
                 }
 
                 return true;
