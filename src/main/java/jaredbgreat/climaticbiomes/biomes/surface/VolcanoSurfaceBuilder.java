@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class VolcanoSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
@@ -25,8 +24,8 @@ public class VolcanoSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> 
 
     public VolcanoSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> crap) {
         super(crap);
-        ASH = BlockRegistrar.blockVolcanicAsh.getDefaultState();
-        BASALT = BlockRegistrar.blockBasalt.getDefaultState();
+        ASH = BlockRegistrar.volcanic_ash.getDefaultState();
+        BASALT = BlockRegistrar.basalt.getDefaultState();
         OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
         PURE_BASALT = new SurfaceBuilderConfig(BASALT, BASALT, ASH);
         ASH_BASALT = new SurfaceBuilderConfig(ASH, BASALT, ASH);

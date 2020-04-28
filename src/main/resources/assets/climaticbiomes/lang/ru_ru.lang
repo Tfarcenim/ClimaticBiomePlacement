@@ -3,15 +3,15 @@ generator.climatic_bp=Климатический
 tile.climaticbiomesjbg.pine_log.name=Cосновая древесина
 tile.climaticbiomesjbg.pine_leaves.oak.name=Cосновая хвоя
 tile.climaticbiomesjbg.pine_planks.name=Доски из сосны
-tile.climaticbiomesjbg.pine_bark.name=Сосновая кора
+tile.climaticbiomesjbg.pine_wood.name=Сосновая кора
 tile.climaticbiomesjbg.pine_sapling.name=Саженец сосны
 tile.climaticbiomesjbg.pine_slab.name=Плита из сосны
 tile.climaticbiomesjbg.pine_stairs.name=Ступеньки из сосны
 tile.climaticbiomesjbg.pine_fence.name=Забор из сосны
-tile.climaticbiomesjbg.pine_gate.name=Калитка из сосны
+tile.climaticbiomesjbg.pine_fence_gate.name=Калитка из сосны
 
 tile.climaticbiomesjbg.basalt.name=базальт
-tile.climaticbiomesjbg.basalt_polished.name=Полированный базальт
+tile.climaticbiomesjbg.polished_basalt.name=Полированный базальт
 tile.climaticbiomesjbg.volcanic_ash.name=Вулканический пепел
 
 tile.climaticbiomesjbg.peat.name=торфяной

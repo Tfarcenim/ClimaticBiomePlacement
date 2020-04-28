@@ -1,47 +1,60 @@
 package jaredbgreat.climaticbiomes.generation;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
-import jaredbgreat.climaticbiomes.generation.map.IMapRegistry;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
+import jaredbgreat.climaticbiomes.Info;
 import jaredbgreat.climaticbiomes.generation.map.MapRegistry;
 import jaredbgreat.climaticbiomes.util.BiomeRegistrar;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.biome.provider.SingleBiomeProvider;
-import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.OverworldChunkGenerator;
-import net.minecraft.world.gen.OverworldGenSettings;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.biome.provider.OverworldBiomeProvider;
+import net.minecraft.world.biome.provider.OverworldBiomeProviderSettings;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.layer.Layer;
+import net.minecraft.world.gen.layer.LayerUtil;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 
-public class ClimaticBiomeProvider extends BiomeProvider {
-    private static Set<Biome> biomes = new HashSet<>();
+public class ClimaticBiomeProvider extends OverworldBiomeProvider {
+    private static Set<Biome> possibleBiomes = new HashSet<>();
+
+    private static final Set<Biome> field_226847_e_ = ImmutableSet.of(Biomes.OCEAN, Biomes.PLAINS, Biomes.DESERT, Biomes.MOUNTAINS, Biomes.FOREST, Biomes.TAIGA, Biomes.SWAMP, Biomes.RIVER, Biomes.FROZEN_OCEAN, Biomes.FROZEN_RIVER, Biomes.SNOWY_TUNDRA, Biomes.SNOWY_MOUNTAINS, Biomes.MUSHROOM_FIELDS, Biomes.MUSHROOM_FIELD_SHORE, Biomes.BEACH, Biomes.DESERT_HILLS, Biomes.WOODED_HILLS, Biomes.TAIGA_HILLS, Biomes.MOUNTAIN_EDGE, Biomes.JUNGLE, Biomes.JUNGLE_HILLS, Biomes.JUNGLE_EDGE, Biomes.DEEP_OCEAN, Biomes.STONE_SHORE, Biomes.SNOWY_BEACH, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.DARK_FOREST, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.WOODED_MOUNTAINS, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.BADLANDS, Biomes.WOODED_BADLANDS_PLATEAU, Biomes.BADLANDS_PLATEAU, Biomes.WARM_OCEAN, Biomes.LUKEWARM_OCEAN, Biomes.COLD_OCEAN, Biomes.DEEP_WARM_OCEAN, Biomes.DEEP_LUKEWARM_OCEAN, Biomes.DEEP_COLD_OCEAN, Biomes.DEEP_FROZEN_OCEAN, Biomes.SUNFLOWER_PLAINS, Biomes.DESERT_LAKES, Biomes.GRAVELLY_MOUNTAINS, Biomes.FLOWER_FOREST, Biomes.TAIGA_MOUNTAINS, Biomes.SWAMP_HILLS, Biomes.ICE_SPIKES, Biomes.MODIFIED_JUNGLE, Biomes.MODIFIED_JUNGLE_EDGE, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.DARK_FOREST_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.MODIFIED_GRAVELLY_MOUNTAINS, Biomes.SHATTERED_SAVANNA, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.ERODED_BADLANDS, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.MODIFIED_BADLANDS_PLATEAU);
+
+
     private MapRegistry finder;
 
+    private final Layer noiseBiomeLayer;
 
-    public ClimaticBiomeProvider(World world) {
-        super(getBiomes());
-        finder = new MapRegistry(world.getSeed(), world);
+
+    public ClimaticBiomeProvider(OverworldBiomeProviderSettings settingsProvider){
+        super(settingsProvider);
+
+        possibleBiomes = Sets.newHashSet(field_226847_e_);
+        ForgeRegistries.BIOMES.forEach(biome -> {
+            if (biome.getRegistryName().getNamespace().equals(Info.ID))possibleBiomes.add(biome);
+        });
+        this.noiseBiomeLayer = LayerUtil.func_227474_a_(settingsProvider.getSeed(), settingsProvider.getWorldType(), settingsProvider.getGeneratorSettings());
+
+        // finder = new MapRegistry(world.getSeed(), world);
 
     }
 
-    public static Set<Biome> getBiomes() {
-        if (biomes.isEmpty()) {
+    public static Set<Biome> getPossibleBiomes() {
+        if (possibleBiomes.isEmpty()) {
             for (Biome biome : Registry.BIOME) {
-                biomes.add(biome);
+                possibleBiomes.add(biome);
             }
         }
-        return biomes;
+        return possibleBiomes;
     }
 
 
@@ -116,7 +129,7 @@ public class ClimaticBiomeProvider extends BiomeProvider {
     @Override
     public boolean hasStructure(Structure<?> structureIn) {
         return hasStructureCache.computeIfAbsent(structureIn, (structure) -> {
-            for(Biome biome : biomes) {
+            for(Biome biome : possibleBiomes) {
                 if(biome.hasStructure(structure)) {
                     return true;
                 }
@@ -130,7 +143,7 @@ public class ClimaticBiomeProvider extends BiomeProvider {
     @Override
     public Set<BlockState> getSurfaceBlocks() {
         if (this.topBlocksCache.isEmpty()) {
-            for(Biome biome : biomes) {
+            for(Biome biome : possibleBiomes) {
                 this.topBlocksCache.add(biome.getSurfaceBuilderConfig().getTop());
             }
         }
@@ -152,6 +165,6 @@ public class ClimaticBiomeProvider extends BiomeProvider {
 
     @Override
     public Biome getNoiseBiome(int x, int y, int z) {
-        return null;
+        return noiseBiomeLayer.func_215738_a(x,z);//todo
     }
 }

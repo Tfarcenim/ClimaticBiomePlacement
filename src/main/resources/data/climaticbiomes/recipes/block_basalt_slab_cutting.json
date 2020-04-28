@@ -1,8 +1,8 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "climaticbiomes:block_basalt"
+    "item": "climaticbiomes:basalt"
   },
-  "result": "climaticbiomes:block_basalt_slab",
+  "result": "climaticbiomes:basalt_slab",
   "count": 1
 }

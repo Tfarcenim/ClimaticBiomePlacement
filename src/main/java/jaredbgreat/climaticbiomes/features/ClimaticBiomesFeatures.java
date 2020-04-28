@@ -2,11 +2,8 @@ package jaredbgreat.climaticbiomes.features;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import jaredbgreat.climaticbiomes.features.PineTree;
-import jaredbgreat.climaticbiomes.features.PineTreeFeature;
 import jaredbgreat.climaticbiomes.util.BlockRegistrar;
 import net.minecraft.block.Blocks;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
@@ -319,9 +316,9 @@ public class ClimaticBiomesFeatures {
 
     public static void addPeatDisks(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
-                Feature.DISK.withConfiguration(new SphereReplaceConfig(BlockRegistrar.blockPeat.getDefaultState(),
+                Feature.DISK.withConfiguration(new SphereReplaceConfig(BlockRegistrar.peat.getDefaultState(),
                                 6, 2, Lists.newArrayList(Blocks.DIRT.getDefaultState(),
-                                BlockRegistrar.blockPeat.getDefaultState())))
+                                BlockRegistrar.peat.getDefaultState())))
                         .withPlacement(Placement.COUNT_TOP_SOLID.configure( new FrequencyConfig(3))));
     }
 

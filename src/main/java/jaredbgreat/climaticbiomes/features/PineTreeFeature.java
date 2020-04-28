@@ -10,6 +10,7 @@ import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 import java.util.Set;
@@ -53,7 +54,7 @@ public class PineTreeFeature extends AbstractTreeFeature<TreeFeatureConfig> {
 
             if (!flag) {
                 return false;
-            } else if ((isSoil(world, pos.down(),BlockRegistrar.pineSapling)) && pos.getY() < world.getMaxHeight() - h1 - 1) {
+            } else if ((isSoil(world, pos.down(), (IPlantable) BlockRegistrar.pineSapling)) && pos.getY() < world.getMaxHeight() - h1 - 1) {
                 this.setDirtAt(world, pos.down(), pos);
 
                 int w = 1;

@@ -6,11 +6,11 @@
   ],
   "key": {
     "S": {
-      "item": "climaticbiomes:mud_bricks_large"
+      "item": "climaticbiomes:large_mud_bricks"
     }
   },
   "result": {
-    "item": "climaticbiomes:mud_bricks_small",
+    "item": "climaticbiomes:small_mud_bricks",
     "count": 4
   }
 }

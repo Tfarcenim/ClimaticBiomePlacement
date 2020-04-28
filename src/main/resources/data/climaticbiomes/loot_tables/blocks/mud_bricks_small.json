@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "climaticbiomes:mud_bricks_small"
+          "name": "climaticbiomes:small_mud_bricks"
         }
       ],
       "conditions": [

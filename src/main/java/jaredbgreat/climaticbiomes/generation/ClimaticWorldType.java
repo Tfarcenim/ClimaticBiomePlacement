@@ -1,13 +1,10 @@
 package jaredbgreat.climaticbiomes.generation;
 
-import jaredbgreat.climaticbiomes.util.BiomeRegistrar;
-import jaredbgreat.climaticbiomes.util.Debug;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.CreateWorldScreen;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.provider.SingleBiomeProvider;
-import net.minecraft.world.biome.provider.SingleBiomeProviderSettings;
+import net.minecraft.world.biome.provider.OverworldBiomeProviderSettings;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.OverworldChunkGenerator;
 import net.minecraft.world.gen.OverworldGenSettings;
@@ -29,7 +26,8 @@ public class ClimaticWorldType extends WorldType {
         //SingleBiomeProviderSettings single = new SingleBiomeProviderSettings();
         // TODO: Change next line to biome being tested
 
-        return new OverworldChunkGenerator(world, new ClimaticBiomeProvider(world), settings);
+        return new OverworldChunkGenerator(world, new ClimaticBiomeProvider(new OverworldBiomeProviderSettings(world.getWorldInfo())),
+                settings);
     }
 
 

@@ -18,9 +18,9 @@ public class ActiveVolcano extends Biome {
 
     public ActiveVolcano(String name) {
         super((new Biome.Builder()).surfaceBuilder(Surfaces.VOLCANIC,
-                new SurfaceBuilderConfig(BlockRegistrar.blockBasalt.getDefaultState(),
-                                         BlockRegistrar.blockBasalt.getDefaultState(),
-                                         BlockRegistrar.blockVolcanicAsh.getDefaultState())).
+                new SurfaceBuilderConfig(BlockRegistrar.basalt.getDefaultState(),
+                                         BlockRegistrar.basalt.getDefaultState(),
+                                         BlockRegistrar.volcanic_ash.getDefaultState())).
                 precipitation(Biome.RainType.RAIN)
                 .category(Biome.Category.EXTREME_HILLS)
                 .depth(1.5F).scale(0.5F)

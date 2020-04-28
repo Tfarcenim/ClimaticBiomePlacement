@@ -5,11 +5,11 @@
   ],
   "key": {
     "#": {
-      "item": "climaticbiomes:block_basalt"
+      "item": "climaticbiomes:basalt"
     }
   },
   "result": {
-    "item": "climaticbiomes:block_basalt_slab",
+    "item": "climaticbiomes:basalt_slab",
     "count": 6
   }
 }
